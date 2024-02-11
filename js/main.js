@@ -1,21 +1,17 @@
 import "../style.css";
-import { setupCounter } from "./counter.js";
+import { convertToNestedArray } from "./convertToNestedArray.js";
 import { fetchData } from "./fetchData.js";
+import { generateNestedList } from "./generateNestedList.js";
 
 const URL = "http://localhost:3001/services";
-
-fetchData(URL);
+const data = await fetchData(URL);
+const nestedArr = convertToNestedArray(data);
+const services = generateNestedList(nestedArr);
 
 document.querySelector("#app").innerHTML = `
-  <div>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
+  <div class="container">
+    <ul>
+      ${services}
+    </ul>
   </div>
 `;
-
-setupCounter(document.querySelector("#counter"));
