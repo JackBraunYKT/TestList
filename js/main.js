@@ -1,5 +1,10 @@
 import "../style.css";
 import { setupCounter } from "./counter.js";
+import { fetchData } from "./fetchData.js";
+
+const URL = "http://localhost:3001/services";
+
+fetchData(URL);
 
 document.querySelector("#app").innerHTML = `
   <div>
